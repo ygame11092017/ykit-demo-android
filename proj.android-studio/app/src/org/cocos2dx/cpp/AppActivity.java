@@ -28,6 +28,7 @@ import android.os.Bundle;
 
 import com.ygame.ykit.YKit;
 import com.ygame.ykit.data.remote.dto.InAppDto;
+import com.ygame.ykit.ui.activity.login.LoginActivity_;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
@@ -79,6 +80,8 @@ public class AppActivity extends Cocos2dxActivity {
 
             }
         });
+
+        LoginActivity_.intent(this).start();
     }
 
     @Override
