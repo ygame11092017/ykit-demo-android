@@ -1,17 +1,20 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.ygame.test"
-        minSdkVersion 15
-        targetSdkVersion 23
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         externalNativeBuild {
             ndkBuild {
@@ -68,6 +71,15 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility rootProject.ext.sourceCompatibilityVersion
+        targetCompatibility rootProject.ext.targetCompatibilityVersion
+    }
+
+    dexOptions {
+        maxProcessCount 8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -93,10 +105,102 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':libcocos2dx')
     compile project(':ykit-release')
+
+    compile deps.supportDesign
+    compile deps.appcompatv7
+    compile deps.recyclerviewv7
+
+    compile deps.multidex
+
+    compile deps.firebaseCore
+    compile deps.firebaseMessaging
+    compile deps.firebaseConfig
+
+    compile deps.playServicesAuth
+
+    compile deps.billing
+
+    compile(deps.crashlytics) { transitive = true; }
+    compile(deps.answers) { transitive = true; }
+
+    compile deps.butterknife
+    annotationProcessor deps.butterknifeCompiler
+
+    compile deps.dagger
+    annotationProcessor deps.daggerCompiler
+
+    compile deps.androidannotations
+    annotationProcessor deps.androidannotationsCompiler
+
+    compile deps.parceler
+    annotationProcessor deps.parcelerCompiler
+
+    compile deps.retrofit
+    compile deps.retrofitConverterGson
+    compile deps.retrofitAdapterRxjava
+
+    compile deps.okhttp
+    compile deps.okhttpInterceptor
+
+    compile deps.gson
+
+    compile deps.transitionseverywhere
+
+    compile deps.glide
+    annotationProcessor deps.glideCompiler
+
+    compile deps.rxjava
+    compile deps.rxandroid
+    compile deps.rxrelay
+    compile deps.rxlifecycle
+    compile deps.rxlifecycleAndroid
+    compile deps.rxlifecycleComponents
+
+    compile deps.dbflow
+    compile deps.dbflowCore
+    compile deps.dbflowRx2
+
+    compile deps.utilcode
+
+    annotationProcessor deps.dbflowCompiler
+    compile deps.timber
+
+    compile deps.appsflyer
+
+    compile deps.facebook
+
+    debugCompile deps.leakcanary
+    releaseCompile deps.leakcanaryNoOp
+    testCompile deps.leakcanaryNoOp
+//
+//    debugCompile deps.blockcanary
+//    releaseCompile deps.blockcanaryNoOp
+
+    compile deps.stetho
+    compile deps.stethoOkhttp3
+    compile deps.stethoUrlconnection
+
+//    debugCompile deps.tinydancer
+//    releaseCompile deps.tinydancerNoOp
+//    testCompile deps.tinydancerNoOp
+
+    compile deps.traceur
+
+    compile deps.logger
+
+    compile(deps.loggingInterceptor) {
+        exclude group: 'org.json', module: 'json'
+    }
 }
 
 apply plugin: 'com.google.gms.google-services'
