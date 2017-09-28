@@ -23,7 +23,12 @@ THE SOFTWARE.
 ****************************************************************************/
 package org.cocos2dx.cpp;
 
+import android.content.Intent;
 import android.os.Bundle;
+
+import com.ygame.ykit.YKit;
+import com.ygame.ykit.data.remote.dto.InAppDto;
+
 import org.cocos2dx.lib.Cocos2dxActivity;
 
 public class AppActivity extends Cocos2dxActivity {
@@ -41,7 +46,55 @@ public class AppActivity extends Cocos2dxActivity {
             return;
         }
         // DO OTHER INITIALIZATION BELOW
-        
+
+        YKit.init(this);
+        YKit.setLauncherListener(new YKit.LauncherListener() {
+            @Override
+            public void onLogin(int userId, String accessToken) {
+
+            }
+
+            @Override
+            public void onLoginAuto(int userId, String accessToken) {
+
+            }
+
+            @Override
+            public void onLogout() {
+
+            }
+
+            @Override
+            public void onInAppPurchase(InAppDto inAppDto) {
+
+            }
+
+            @Override
+            public void onPause() {
+
+            }
+
+            @Override
+            public void onResume() {
+
+            }
+        });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        YKit.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        YKit.onPause(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        YKit.onActivityResult(requestCode, resultCode, data, this);
+    }
 }
