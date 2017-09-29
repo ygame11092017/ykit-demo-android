@@ -47,6 +47,7 @@ ext {
     materialDialogsVersion = "0.9.4.5"
     materialColorsVersion = "3.0.0"
     transitionseverywhereVersion = "1.7.6"
+    calligraphyVersion = "2.3.0"
 
     appsflyerVersion = "4.8.3"
     facebookVersion = "4.26.0"
@@ -136,6 +137,7 @@ ext.deps = [
         materialDialogs      : "com.afollestad.material-dialogs:core:${materialDialogsVersion}",
         materialColors       : "com.wada811:android-material-design-colors:${materialColorsVersion}",
         transitionseverywhere: "com.andkulikov:transitionseverywhere:${transitionseverywhereVersion}",
+        calligraphy          : "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
 
         appsflyer            : "com.appsflyer:af-android-sdk:${appsflyerVersion}",
         facebook             : "com.facebook.android:facebook-android-sdk:${facebookVersion}",

@@ -49,6 +49,7 @@ public class AppActivity extends Cocos2dxActivity {
         // DO OTHER INITIALIZATION BELOW
 
         YKit.init(this);
+        YKit.setPaymentInfo("myServerId", "myCharId", "myPaymentId");
         YKit.setLauncherListener(new YKit.LauncherListener() {
             @Override
             public void onLogin(int userId, String accessToken) {

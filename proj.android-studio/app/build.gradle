@@ -155,6 +155,7 @@ dependencies {
     compile deps.gson
 
     compile deps.transitionseverywhere
+    compile deps.calligraphy
 
     compile deps.glide
     annotationProcessor deps.glideCompiler
