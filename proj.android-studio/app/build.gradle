@@ -183,17 +183,10 @@ dependencies {
     debugCompile deps.leakcanary
     releaseCompile deps.leakcanaryNoOp
     testCompile deps.leakcanaryNoOp
-//
-//    debugCompile deps.blockcanary
-//    releaseCompile deps.blockcanaryNoOp
 
     compile deps.stetho
     compile deps.stethoOkhttp3
     compile deps.stethoUrlconnection
-
-//    debugCompile deps.tinydancer
-//    releaseCompile deps.tinydancerNoOp
-//    testCompile deps.tinydancerNoOp
 
     compile deps.traceur
 

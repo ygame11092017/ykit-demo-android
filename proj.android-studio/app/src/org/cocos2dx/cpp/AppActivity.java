@@ -28,7 +28,8 @@ import android.os.Bundle;
 
 import com.ygame.ykit.YKit;
 import com.ygame.ykit.data.remote.dto.InAppDto;
-import com.ygame.ykit.ui.activity.login.LoginActivity_;
+import com.ygame.ykit.ui.listener.LauncherListener;
+import com.ygame.ykit.util.MessageUtil;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
@@ -48,41 +49,37 @@ public class AppActivity extends Cocos2dxActivity {
         }
         // DO OTHER INITIALIZATION BELOW
 
-        YKit.init(this);
+        YKit.getInstance().init(this);
         YKit.setPaymentInfo("myServerId", "myCharId", "myPaymentId");
-        YKit.setLauncherListener(new YKit.LauncherListener() {
+        YKit.setLauncherListener(new LauncherListener() {
             @Override
             public void onLogin(int userId, String accessToken) {
-
+                MessageUtil.showToastDebug(AppActivity.this, "userId=" + userId + "\n accessToken=" + accessToken);
             }
 
             @Override
             public void onLoginAuto(int userId, String accessToken) {
-
+                MessageUtil.showToastDebug(AppActivity.this, "userId=" + userId + "\n accessToken=" + accessToken);
             }
 
             @Override
             public void onLogout() {
-
+                MessageUtil.showToastDebug(AppActivity.this, "onLogout");
             }
 
             @Override
             public void onInAppPurchase(InAppDto inAppDto) {
-
+                MessageUtil.showToastDebug(AppActivity.this, "onInAppPurchase");
             }
 
             @Override
             public void onPause() {
-
             }
 
             @Override
             public void onResume() {
-
             }
         });
-
-        LoginActivity_.intent(this).start();
     }
 
     @Override
@@ -95,6 +92,12 @@ public class AppActivity extends Cocos2dxActivity {
     protected void onPause() {
         super.onPause();
         YKit.onPause(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        YKit.onDestroy(this);
     }
 
     @Override
