@@ -23,7 +23,7 @@ android {
                     targets 'MyGame'
                     arguments 'NDK_TOOLCHAIN_VERSION=4.9'
                     arguments 'APP_PLATFORM=android-'+PROP_APP_PLATFORM
-                    
+
                     def module_paths = [project.file("../../cocos2d").absolutePath,
                                         project.file("../../cocos2d/cocos").absolutePath,
                                         project.file("../../cocos2d/external").absolutePath]
@@ -35,7 +35,7 @@ android {
                     else {
                         arguments 'NDK_MODULE_PATH=' + module_paths.join(':')
                     }
-                    
+
                     arguments '-j' + Runtime.runtime.availableProcessors()
                     abiFilters.addAll(PROP_APP_ABI.split(':').collect{it as String})
                 }
@@ -60,8 +60,14 @@ android {
     }
 
     signingConfigs {
+        debug {
+            storeFile file("keystore/com.ygame.test.keystore")
+            keyAlias 'ygame'
+            keyPassword '123456'
+            storePassword '123456'
+        }
 
-       release {
+        release {
             if (project.hasProperty("RELEASE_STORE_FILE")) {
                 storeFile file(RELEASE_STORE_FILE)
                 storePassword RELEASE_STORE_PASSWORD
@@ -96,6 +102,7 @@ android {
         }
 
         debug {
+            signingConfig signingConfigs.debug
             externalNativeBuild {
                 ndkBuild {
                     arguments 'NDK_DEBUG=1'
