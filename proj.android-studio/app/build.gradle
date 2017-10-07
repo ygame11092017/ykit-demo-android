@@ -162,10 +162,10 @@ dependencies {
 
     compile deps.rxjava
     compile deps.rxandroid
-    compile deps.rxrelay
     compile deps.rxlifecycle
     compile deps.rxlifecycleAndroid
     compile deps.rxlifecycleComponents
+    compile deps.nybus
 
     compile deps.dbflow
     compile deps.dbflowCore
@@ -179,6 +179,7 @@ dependencies {
     compile deps.appsflyer
 
     compile deps.facebook
+    compile deps.facebook_account_kit
 
     debugCompile deps.leakcanary
     releaseCompile deps.leakcanaryNoOp

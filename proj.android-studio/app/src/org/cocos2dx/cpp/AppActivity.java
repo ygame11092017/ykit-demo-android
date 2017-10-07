@@ -27,9 +27,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.ygame.ykit.YKit;
-import com.ygame.ykit.data.remote.dto.InAppDto;
-import com.ygame.ykit.ui.listener.LauncherListener;
-import com.ygame.ykit.util.MessageUtil;
+import com.ygame.ykit.data.remote.dto.BillDto;
+import com.ygame.ykit.ui.listener.YKitListener;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
@@ -49,27 +48,24 @@ public class AppActivity extends Cocos2dxActivity {
         }
         // DO OTHER INITIALIZATION BELOW
 
-        YKit.getInstance().init(this);
-        YKit.setPaymentInfo("myServerId", "myCharId", "myPaymentId");
-        YKit.setLauncherListener(new LauncherListener() {
+        YKit.get().init(this, new YKitListener() {
             @Override
             public void onLogin(int userId, String accessToken) {
-                MessageUtil.showToastDebug(AppActivity.this, "userId=" + userId + "\n accessToken=" + accessToken);
+
             }
 
             @Override
             public void onLoginAuto(int userId, String accessToken) {
-                MessageUtil.showToastDebug(AppActivity.this, "userId=" + userId + "\n accessToken=" + accessToken);
+
             }
 
             @Override
             public void onLogout() {
-                MessageUtil.showToastDebug(AppActivity.this, "onLogout");
+
             }
 
             @Override
-            public void onInAppPurchase(InAppDto inAppDto) {
-                MessageUtil.showToastDebug(AppActivity.this, "onInAppPurchase");
+            public void onInAppPurchase(BillDto billDto) {
             }
 
             @Override
@@ -80,28 +76,29 @@ public class AppActivity extends Cocos2dxActivity {
             public void onResume() {
             }
         });
+        YKit.get().setPaymentInfo("myServerId", "myCharId", "myPaymentId");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        YKit.onResume(this);
+        YKit.get().onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        YKit.onPause(this);
+        YKit.get().onPause(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        YKit.onDestroy(this);
+        YKit.get().onDestroy(this);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        YKit.onActivityResult(requestCode, resultCode, data, this);
+        YKit.get().onActivityResult(requestCode, resultCode, data, this);
     }
 }
