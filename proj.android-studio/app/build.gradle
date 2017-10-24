@@ -173,6 +173,7 @@ dependencies {
     compile deps.rxlifecycleAndroid
     compile deps.rxlifecycleComponents
     compile deps.nybus
+    compile deps.localeChanger
 
     compile deps.dbflow
     compile deps.dbflowCore
