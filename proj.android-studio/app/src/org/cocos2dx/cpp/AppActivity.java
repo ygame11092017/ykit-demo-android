@@ -74,6 +74,7 @@ public class AppActivity extends Cocos2dxActivity {
 
             @Override
             public void onResume() {
+                YKit.get().openLogin();
             }
         });
         YKit.get().setPaymentInfo("myServerId", "myCharId", "myPaymentId");
