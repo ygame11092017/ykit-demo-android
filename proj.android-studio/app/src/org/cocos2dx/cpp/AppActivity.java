@@ -51,12 +51,7 @@ public class AppActivity extends Cocos2dxActivity {
         YKit.get().init(this, new YKitListener() {
             @Override
             public void onLogin(int userId, String accessToken) {
-
-            }
-
-            @Override
-            public void onLoginAuto(int userId, String accessToken) {
-
+                YKit.get().showLauncher();
             }
 
             @Override
