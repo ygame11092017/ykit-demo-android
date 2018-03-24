@@ -135,6 +135,11 @@ dependencies {
 
     compile deps.playServicesAuth
 
+    compile deps.playServicesBase
+    compile deps.installReferrer
+    compile deps.kochavaTracker
+    compile deps.gameanalytics
+
     compile deps.billing
 
     compile(deps.crashlytics) { transitive = true; }

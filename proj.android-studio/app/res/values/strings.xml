@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">YKitDemo</string>
     <string name="facebook_app_id">232566390603887</string>
+    <string name="kochava_app_guid" translatable="false">koykit-android-fs65o</string>
+    <string name="gameanalytics_game_key" translatable="false">4a58aee6112cf6025e0f6feaea5d5a00</string>
+    <string name="gameanalytics_secret_key" translatable="false">e5b95eab553e262ff2b07ea7b7a6556a7bd9757d</string>
 </resources>
